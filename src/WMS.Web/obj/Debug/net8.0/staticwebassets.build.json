@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "dVUKgFVxDHfKSfQGIdqQfnw2iW5rJxxkwEg8uYjXn/w=",
+  "Source": "WMS.Web",
+  "BasePath": "_content/WMS.Web",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

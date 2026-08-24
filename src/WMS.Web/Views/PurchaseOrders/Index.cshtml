@@ -1,0 +1,53 @@
+@model IEnumerable<PurchaseOrderDto>
+@{ ViewData["Title"] = "Purchase Orders"; ViewData["Breadcrumb"] = "Purchase Orders"; }
+
+<div class="page-header d-flex justify-content-between align-items-center">
+    <div><h4><i class="bi bi-file-earmark-text me-2 text-primary"></i>Purchase Orders</h4><p>@ViewBag.TotalCount records</p></div>
+</div>
+
+<div class="card">
+    <div class="card-header d-flex gap-2 flex-wrap">
+        @foreach (var s in new[] { "", "Draft", "Confirmed", "Received", "Closed" })
+        {
+            <a asp-action="Index" asp-route-status="@(s == "" ? null : s)"
+               class="btn btn-sm @(ViewBag.Status == (s == "" ? null : s) ? "btn-primary" : "btn-outline-secondary")">
+                @(s == "" ? "All" : s)
+            </a>
+        }
+    </div>
+    <div class="card-body p-0">
+        <table class="table table-hover mb-0">
+            <thead><tr><th>PO Number</th><th>Date</th><th>Vendor</th><th>Status</th><th>Notes</th><th class="text-center">Actions</th></tr></thead>
+            <tbody>
+                @if (!Model.Any()) { <tr><td colspan="6" class="text-center text-muted py-4">No purchase orders</td></tr> }
+                @foreach (var po in Model)
+                {
+                    <tr>
+                        <td class="fw-semibold text-primary">@po.PONumber</td>
+                        <td>@po.PODate.ToString("dd MMM yyyy")</td>
+                        <td>@po.VendorName</td>
+                        <td><span class="badge badge-@po.Status.ToLower()">@po.Status</span></td>
+                        <td class="text-muted">@(po.Notes ?? "-")</td>
+                        <td class="text-center">
+                            <a asp-action="Details" asp-route-id="@po.Id" class="btn btn-action btn-outline-info"><i class="bi bi-eye"></i></a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    @if ((int)ViewBag.TotalPages > 1)
+    {
+        <div class="card-footer d-flex justify-content-between align-items-center">
+            <small class="text-muted">Page @ViewBag.CurrentPage of @ViewBag.TotalPages</small>
+            <nav><ul class="pagination pagination-sm mb-0">
+                @for (int i = 1; i <= (int)ViewBag.TotalPages; i++)
+                {
+                    <li class="page-item @(i == (int)ViewBag.CurrentPage ? "active" : "")">
+                        <a class="page-link" asp-action="Index" asp-route-page="@i">@i</a>
+                    </li>
+                }
+            </ul></nav>
+        </div>
+    }
+</div>

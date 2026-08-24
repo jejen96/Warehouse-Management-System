@@ -1,0 +1,60 @@
+@model ItemDto
+@{ ViewData["Title"] = "Edit Item"; ViewData["Breadcrumb"] = "Edit Item"; }
+
+<div class="page-header">
+    <h4><i class="bi bi-pencil me-2 text-warning"></i>Edit Item — @Model.ItemCode</h4>
+</div>
+
+<div class="row">
+    <div class="col-lg-7">
+        <div class="card">
+            <div class="card-header">Item Information</div>
+            <div class="card-body">
+                <form asp-action="Edit" asp-route-id="@Model.Id" method="post">
+                    @Html.AntiForgeryToken()
+                    <div class="alert alert-light border mb-3">
+                        <strong>Item Code:</strong> @Model.ItemCode <span class="text-muted ms-2">(cannot be changed)</span>
+                    </div>
+                    <div class="row g-3">
+                        <div class="col-md-8">
+                            <label class="form-label fw-semibold">Item Name <span class="text-danger">*</span></label>
+                            <input asp-for="ItemName" class="form-control" />
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label fw-semibold">UOM <span class="text-danger">*</span></label>
+                            <select asp-for="UOM" class="form-select">
+                                <option>PCS</option><option>KG</option><option>BOX</option><option>LTR</option><option>MTR</option>
+                            </select>
+                        </div>
+                        <div class="col-12">
+                            <label class="form-label fw-semibold">Description</label>
+                            <textarea asp-for="Description" class="form-control" rows="2"></textarea>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label fw-semibold">Category</label>
+                            <input asp-for="Category" class="form-control" />
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label fw-semibold">Min Stock</label>
+                            <input asp-for="MinStock" type="number" step="0.01" class="form-control" />
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label fw-semibold">Max Stock</label>
+                            <input asp-for="MaxStock" type="number" step="0.01" class="form-control" />
+                        </div>
+                        <div class="col-12">
+                            <div class="form-check form-switch">
+                                <input asp-for="IsActive" class="form-check-input" type="checkbox" />
+                                <label class="form-check-label">Active</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="d-flex gap-2 mt-4">
+                        <button type="submit" class="btn btn-warning text-white"><i class="bi bi-check-lg me-1"></i>Update</button>
+                        <a asp-action="Index" class="btn btn-outline-secondary">Cancel</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

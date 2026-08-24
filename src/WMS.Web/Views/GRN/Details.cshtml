@@ -1,0 +1,51 @@
+@model GRNDto
+@{ ViewData["Title"] = "GRN Details"; ViewData["Breadcrumb"] = "GRN Details"; }
+
+<div class="page-header d-flex justify-content-between align-items-center">
+    <div>
+        <h4><i class="bi bi-clipboard-check me-2 text-primary"></i>@Model.GRNNumber</h4>
+        <p>PO: <strong>@Model.PONumber</strong> &nbsp;|&nbsp; Received by: @Model.ReceivedBy &nbsp;|&nbsp; Date: @Model.GRNDate.ToString("dd MMM yyyy")</p>
+    </div>
+    <div class="d-flex gap-2 align-items-center">
+        <span class="badge badge-@Model.Status.ToLower() fs-6">@Model.Status</span>
+        @if (Model.Status == "Draft")
+        {
+            <form asp-action="Complete" asp-route-id="@Model.Id" method="post" class="d-inline"
+                  onsubmit="return confirm('Complete GRN and update stock?')">
+                @Html.AntiForgeryToken()
+                <button class="btn btn-success btn-sm"><i class="bi bi-check-circle me-1"></i>Complete GRN</button>
+            </form>
+        }
+        <a asp-action="Index" class="btn btn-outline-secondary btn-sm"><i class="bi bi-arrow-left me-1"></i>Back</a>
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-header">Receipt Details</div>
+    <div class="card-body p-0">
+        <table class="table mb-0">
+            <thead><tr><th>#</th><th>Item</th><th class="text-end">Received Qty</th><th>QC Status</th><th>Put Away Location</th></tr></thead>
+            <tbody>
+                @{ int no = 1; }
+                @foreach (var d in Model.Details)
+                {
+                    <tr>
+                        <td>@no</td>
+                        <td>@d.ItemName</td>
+                        <td class="text-end fw-semibold">@d.ReceivedQty.ToString("N2")</td>
+                        <td>
+                            @{
+                                var qcBadge = d.QCStatus switch {
+                                    "Accepted" => "success", "Rejected" => "danger", _ => "warning"
+                                };
+                            }
+                            <span class="badge bg-@qcBadge">@d.QCStatus</span>
+                        </td>
+                        <td>@(d.PutAwayLocationCode ?? "<span class='text-muted'>Not assigned</span>")</td>
+                    </tr>
+                    no++;
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

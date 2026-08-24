@@ -1,0 +1,50 @@
+@model IEnumerable<StockLedgerDto>
+@{ ViewData["Title"] = "Stock Ledger"; ViewData["Breadcrumb"] = "Stock Ledger"; }
+
+<div class="page-header"><h4><i class="bi bi-journal-text me-2 text-info"></i>Stock Ledger</h4></div>
+
+<div class="card">
+    <div class="card-body p-0">
+        <table class="table table-hover mb-0">
+            <thead><tr><th>Date</th><th>Item</th><th>Location</th><th>Movement</th><th>Reference</th><th class="text-end">Quantity</th><th>By</th></tr></thead>
+            <tbody>
+                @if (!Model.Any()) { <tr><td colspan="7" class="text-center text-muted py-4">No ledger entries</td></tr> }
+                @foreach (var l in Model)
+                {
+                    <tr>
+                        <td class="text-muted small">@l.CreatedAt.ToString("dd/MM/yy HH:mm")</td>
+                        <td>@l.ItemName</td>
+                        <td><span class="badge bg-light text-dark">@l.LocationCode</span></td>
+                        <td>
+                            @{
+                                var color = l.MovementType switch {
+                                    "Inbound" => "success", "Outbound" => "danger",
+                                    "Transfer" => "info", "Adjustment" => "warning", _ => "secondary"
+                                };
+                            }
+                            <span class="badge bg-@color">@l.MovementType</span>
+                        </td>
+                        <td class="text-muted small">@l.ReferenceNumber</td>
+                        <td class="text-end fw-bold @(l.Quantity >= 0 ? "text-success" : "text-danger")">
+                            @(l.Quantity >= 0 ? "+" : "")@l.Quantity.ToString("N2")
+                        </td>
+                        <td class="text-muted small">@l.CreatedBy</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    @if ((int)ViewBag.TotalPages > 1)
+    {
+        <div class="card-footer">
+            <nav><ul class="pagination pagination-sm mb-0">
+                @for (int i = 1; i <= (int)ViewBag.TotalPages; i++)
+                {
+                    <li class="page-item @(i == (int)ViewBag.CurrentPage ? "active" : "")">
+                        <a class="page-link" asp-action="Ledger" asp-route-page="@i">@i</a>
+                    </li>
+                }
+            </ul></nav>
+        </div>
+    }
+</div>

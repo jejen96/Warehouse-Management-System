@@ -1,0 +1,77 @@
+@model SalesOrderDto
+@{ ViewData["Title"] = "SO Details"; ViewData["Breadcrumb"] = "SO Details"; }
+
+<div class="page-header d-flex justify-content-between align-items-center">
+    <div>
+        <h4><i class="bi bi-cart3 me-2 text-success"></i>@Model.SONumber</h4>
+        <p>Customer: <strong>@Model.CustomerName</strong> &nbsp;|&nbsp; Date: @Model.SODate.ToString("dd MMM yyyy")</p>
+    </div>
+    <div class="d-flex gap-2 align-items-center">
+        <span class="badge badge-@Model.Status.ToLower() fs-6">@Model.Status</span>
+        @if (Model.Status == "Draft")
+        {
+            <form asp-action="UpdateStatus" asp-route-id="@Model.Id" method="post" class="d-inline">
+                @Html.AntiForgeryToken()
+                <input type="hidden" name="status" value="Confirmed" />
+                <button class="btn btn-success btn-sm"><i class="bi bi-check-circle me-1"></i>Confirm SO</button>
+            </form>
+        }
+        @if (Model.Status == "Shipped")
+        {
+            <form asp-action="UpdateStatus" asp-route-id="@Model.Id" method="post" class="d-inline">
+                @Html.AntiForgeryToken()
+                <input type="hidden" name="status" value="Closed" />
+                <button class="btn btn-secondary btn-sm"><i class="bi bi-lock me-1"></i>Close SO</button>
+            </form>
+        }
+        <a asp-action="Index" class="btn btn-outline-secondary btn-sm"><i class="bi bi-arrow-left me-1"></i>Back</a>
+    </div>
+</div>
+
+<div class="row g-3">
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-header">Customer Info</div>
+            <div class="card-body">
+                <p class="mb-1"><strong>@Model.CustomerName</strong></p>
+                <p class="text-muted small mb-0">@(Model.CustomerAddress ?? "No address provided")</p>
+                @if (!string.IsNullOrEmpty(Model.Notes))
+                {
+                    <hr /><p class="text-muted small mb-0"><i class="bi bi-chat-left-text me-1"></i>@Model.Notes</p>
+                }
+            </div>
+        </div>
+    </div>
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header">Line Items</div>
+            <div class="card-body p-0">
+                <table class="table mb-0">
+                    <thead><tr><th>#</th><th>Item</th><th>UOM</th><th class="text-end">Ordered</th><th class="text-end">Picked</th><th class="text-end">Unit Price</th><th class="text-end">Total</th></tr></thead>
+                    <tbody>
+                        @{ int no = 1; decimal grandTotal = 0; }
+                        @foreach (var d in Model.Details)
+                        {
+                            var total = d.OrderedQty * d.UnitPrice;
+                            grandTotal += total;
+                            <tr>
+                                <td>@no</td>
+                                <td>@d.ItemName</td>
+                                <td>@d.UOM</td>
+                                <td class="text-end">@d.OrderedQty.ToString("N2")</td>
+                                <td class="text-end @(d.PickedQty >= d.OrderedQty ? "text-success" : "text-warning")">@d.PickedQty.ToString("N2")</td>
+                                <td class="text-end">@d.UnitPrice.ToString("N2")</td>
+                                <td class="text-end fw-semibold">@total.ToString("N2")</td>
+                            </tr>
+                            no++;
+                        }
+                        <tr class="table-light fw-bold">
+                            <td colspan="6" class="text-end">Grand Total</td>
+                            <td class="text-end">@grandTotal.ToString("N2")</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

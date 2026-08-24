@@ -1,0 +1,42 @@
+@model IEnumerable<WarehouseDto>
+@{ ViewData["Title"] = "Warehouses"; ViewData["Breadcrumb"] = "Warehouses"; }
+
+<div class="page-header d-flex justify-content-between align-items-center">
+    <div><h4><i class="bi bi-building me-2 text-primary"></i>Warehouses</h4></div>
+    <a asp-action="Create" class="btn btn-primary"><i class="bi bi-plus-lg me-1"></i>Add Warehouse</a>
+</div>
+
+<div class="card">
+    <div class="card-body p-0">
+        <div class="table-responsive">
+            <table class="table table-hover mb-0">
+                <thead>
+                    <tr><th>Code</th><th>Name</th><th>Address</th><th>Status</th><th class="text-center">Actions</th></tr>
+                </thead>
+                <tbody>
+                    @if (!Model.Any())
+                    {
+                        <tr><td colspan="5" class="text-center text-muted py-4">No warehouses found</td></tr>
+                    }
+                    @foreach (var w in Model)
+                    {
+                        <tr>
+                            <td class="fw-semibold text-primary">@w.WarehouseCode</td>
+                            <td>@w.WarehouseName</td>
+                            <td class="text-muted">@(w.Address ?? "-")</td>
+                            <td><span class="badge @(w.IsActive ? "bg-success" : "bg-secondary")">@(w.IsActive ? "Active" : "Inactive")</span></td>
+                            <td class="text-center">
+                                <a asp-action="Edit" asp-route-id="@w.Id" class="btn btn-action btn-outline-warning"><i class="bi bi-pencil"></i></a>
+                                <form asp-action="Delete" asp-route-id="@w.Id" method="post" class="d-inline"
+                                      onsubmit="return confirm('Delete @w.WarehouseName?')">
+                                    @Html.AntiForgeryToken()
+                                    <button class="btn btn-action btn-outline-danger"><i class="bi bi-trash"></i></button>
+                                </form>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

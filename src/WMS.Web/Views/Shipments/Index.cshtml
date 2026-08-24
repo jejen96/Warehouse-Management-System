@@ -1,0 +1,25 @@
+@model IEnumerable<ShipmentDto>
+@{ ViewData["Title"] = "Shipments"; ViewData["Breadcrumb"] = "Shipments"; }
+
+<div class="page-header"><h4><i class="bi bi-send me-2 text-primary"></i>Shipments</h4></div>
+
+<div class="card">
+    <div class="card-body p-0">
+        <table class="table table-hover mb-0">
+            <thead><tr><th>Shipment #</th><th>Pack #</th><th>Carrier</th><th>Tracking No</th><th>Shipped Date</th></tr></thead>
+            <tbody>
+                @if (!Model.Any()) { <tr><td colspan="5" class="text-center text-muted py-4">No shipments found</td></tr> }
+                @foreach (var s in Model)
+                {
+                    <tr>
+                        <td class="fw-semibold text-primary">@s.ShipmentNumber</td>
+                        <td>@s.PackNumber</td>
+                        <td><span class="badge bg-light text-dark"><i class="bi bi-truck me-1"></i>@s.Carrier</span></td>
+                        <td>@(s.TrackingNo ?? "-")</td>
+                        <td>@s.ShippedDate.ToString("dd MMM yyyy")</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

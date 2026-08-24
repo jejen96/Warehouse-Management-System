@@ -527,13 +527,13 @@ VALUES
     (NEWID(), 'C-02-01', 'C', '02', '01', @WarehouseId, 'system');
 
 -- Admin User (password: Admin@123)
--- BCrypt hash of "Admin@123"
+-- BCrypt hash generated via BCrypt.Net-Next workFactor=11
 INSERT INTO Users (Id, Username, Email, PasswordHash, Role, WarehouseId, CreatedBy)
 VALUES (
     NEWID(),
     'admin',
     'admin@wms.local',
-    '$2a$11$8K1p/a0dhrxSHxN1FFl7puFBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB',
+    '$2a$11$rKLRdxoThJL/peeEibbuO.EOp7qX2DwBDFSYWl1Q.LrV./qETiOA2',
     'Admin',
     @WarehouseId,
     'system'

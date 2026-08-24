@@ -1,0 +1,27 @@
+@model WarehouseDto
+@{ ViewData["Title"] = "Create Warehouse"; ViewData["Breadcrumb"] = "Create Warehouse"; }
+<div class="page-header"><h4><i class="bi bi-plus-circle me-2 text-primary"></i>Create Warehouse</h4></div>
+<div class="row"><div class="col-lg-6">
+    <div class="card"><div class="card-header">Warehouse Information</div>
+    <div class="card-body">
+        <form asp-action="Create" method="post">
+            @Html.AntiForgeryToken()
+            <div class="mb-3">
+                <label class="form-label fw-semibold">Warehouse Code <span class="text-danger">*</span></label>
+                <input asp-for="WarehouseCode" class="form-control" placeholder="e.g. WH-001" />
+            </div>
+            <div class="mb-3">
+                <label class="form-label fw-semibold">Warehouse Name <span class="text-danger">*</span></label>
+                <input asp-for="WarehouseName" class="form-control" placeholder="Enter warehouse name" />
+            </div>
+            <div class="mb-3">
+                <label class="form-label fw-semibold">Address</label>
+                <textarea asp-for="Address" class="form-control" rows="2"></textarea>
+            </div>
+            <div class="d-flex gap-2">
+                <button type="submit" class="btn btn-primary"><i class="bi bi-check-lg me-1"></i>Save</button>
+                <a asp-action="Index" class="btn btn-outline-secondary">Cancel</a>
+            </div>
+        </form>
+    </div></div>
+</div></div>

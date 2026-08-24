@@ -165,3 +165,4 @@ C:\Users\admin\Documents\GitHub\Warehouse Management System\tests\WMS.Tests\obj\
 C:\Users\admin\Documents\GitHub\Warehouse Management System\tests\WMS.Tests\obj\Debug\net8.0\WMS.Tests.genruntimeconfig.cache
 C:\Users\admin\Documents\GitHub\Warehouse Management System\tests\WMS.Tests\obj\Debug\net8.0\ref\WMS.Tests.dll
 C:\Users\admin\Documents\GitHub\Warehouse Management System\tests\WMS.Tests\bin\Debug\net8.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+C:\Users\admin\Documents\GitHub\Warehouse Management System\tests\WMS.Tests\obj\Debug\net8.0\WMS.Tests.sourcelink.json

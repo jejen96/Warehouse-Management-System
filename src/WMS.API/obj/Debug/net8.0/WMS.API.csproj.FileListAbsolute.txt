@@ -99,3 +99,4 @@ C:\Users\admin\Documents\GitHub\Warehouse Management System\src\WMS.API\obj\Debu
 C:\Users\admin\Documents\GitHub\Warehouse Management System\src\WMS.API\obj\Debug\net8.0\WMS.API.genruntimeconfig.cache
 C:\Users\admin\Documents\GitHub\Warehouse Management System\src\WMS.API\obj\Debug\net8.0\ref\WMS.API.dll
 C:\Users\admin\Documents\GitHub\Warehouse Management System\src\WMS.API\bin\Debug\net8.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+C:\Users\admin\Documents\GitHub\Warehouse Management System\src\WMS.API\obj\Debug\net8.0\WMS.API.sourcelink.json

@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "5S8v0P3E+nQ=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\admin\\Documents\\GitHub\\Warehouse Management System\\tools\\GenerateHash\\GenerateHash.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\admin\\.nuget\\packages\\bcrypt.net-next\\4.0.3\\bcrypt.net-next.4.0.3.nupkg.sha512"
+  ],
+  "logs": []
+}
