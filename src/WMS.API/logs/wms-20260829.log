@@ -1,0 +1,327 @@
+2026-08-29 00:00:55.761 +07:00 [INF] Executed DbCommand (184ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2026-08-29 00:00:56.432 +07:00 [INF] Executed DbCommand (151ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2026-08-29 00:00:56.466 +07:00 [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2026-08-29 00:00:56.482 +07:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2026-08-29 00:00:56.605 +07:00 [INF] Executed DbCommand (11ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2026-08-29 00:00:58.572 +07:00 [INF] Executed DbCommand (20ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [UnitsOfMeasure] AS [u]
+        WHERE [u].[IsDeleted] = CAST(0 AS bit)) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2026-08-29 00:00:58.633 +07:00 [INF] Executed DbCommand (12ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Warehouses] AS [w]
+        WHERE [w].[IsDeleted] = CAST(0 AS bit)) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2026-08-29 00:00:58.677 +07:00 [INF] Executed DbCommand (15ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Users] AS [u]
+        WHERE [u].[IsDeleted] = CAST(0 AS bit)) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2026-08-29 00:07:49.315 +07:00 [INF] HTTP POST /api/v1/auth/login started
+2026-08-29 00:07:49.495 +07:00 [WRN] Failed to determine the https port for redirect.
+2026-08-29 00:07:50.850 +07:00 [INF] Executed DbCommand (105ms) [Parameters=[@__dto_Username_0='?' (Size = 50)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[Id], [u].[CreatedAt], [u].[CreatedBy], [u].[Email], [u].[IsActive], [u].[IsDeleted], [u].[PasswordHash], [u].[Role], [u].[UpdatedAt], [u].[UpdatedBy], [u].[Username], [u].[WarehouseId]
+FROM [Users] AS [u]
+WHERE [u].[IsDeleted] = CAST(0 AS bit) AND [u].[Username] = @__dto_Username_0 AND [u].[IsDeleted] = CAST(0 AS bit) AND [u].[IsActive] = CAST(1 AS bit)
+2026-08-29 00:07:54.399 +07:00 [INF] HTTP POST /api/v1/auth/login responded 200 in 5096.0972ms
+2026-08-29 00:07:54.666 +07:00 [INF] HTTP GET /api/v1/items started
+2026-08-29 00:07:55.946 +07:00 [INF] Executed DbCommand (13ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Items] AS [i]
+WHERE [i].[IsDeleted] = CAST(0 AS bit) AND [i].[IsDeleted] = CAST(0 AS bit)
+2026-08-29 00:07:56.061 +07:00 [INF] Executed DbCommand (10ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [i].[Id], [i].[Category], [i].[CreatedAt], [i].[CreatedBy], [i].[Description], [i].[IsActive], [i].[IsDeleted], [i].[ItemCode], [i].[ItemName], [i].[MaxStock], [i].[MinStock], [i].[UOM], [i].[UpdatedAt], [i].[UpdatedBy]
+FROM [Items] AS [i]
+WHERE [i].[IsDeleted] = CAST(0 AS bit) AND [i].[IsDeleted] = CAST(0 AS bit)
+ORDER BY [i].[ItemCode]
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+2026-08-29 00:07:56.435 +07:00 [INF] HTTP GET /api/v1/items responded 200 in 1769.1763ms
+2026-08-29 00:07:56.527 +07:00 [INF] HTTP GET /api/v1/warehouses started
+2026-08-29 00:07:56.599 +07:00 [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Warehouses] AS [w]
+WHERE [w].[IsDeleted] = CAST(0 AS bit) AND [w].[IsDeleted] = CAST(0 AS bit)
+2026-08-29 00:07:56.644 +07:00 [INF] Executed DbCommand (8ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [w].[Id], [w].[Address], [w].[CreatedAt], [w].[CreatedBy], [w].[IsActive], [w].[IsDeleted], [w].[UpdatedAt], [w].[UpdatedBy], [w].[WarehouseCode], [w].[WarehouseName]
+FROM [Warehouses] AS [w]
+WHERE [w].[IsDeleted] = CAST(0 AS bit) AND [w].[IsDeleted] = CAST(0 AS bit)
+ORDER BY [w].[WarehouseCode]
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+2026-08-29 00:07:56.797 +07:00 [INF] HTTP GET /api/v1/warehouses responded 200 in 269.5359ms
+2026-08-29 00:07:56.832 +07:00 [INF] HTTP GET /api/v1/vendors started
+2026-08-29 00:07:56.890 +07:00 [INF] Executed DbCommand (6ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Vendors] AS [v]
+WHERE [v].[IsDeleted] = CAST(0 AS bit) AND [v].[IsDeleted] = CAST(0 AS bit)
+2026-08-29 00:07:56.932 +07:00 [INF] Executed DbCommand (7ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [v].[Id], [v].[Address], [v].[Contact], [v].[CreatedAt], [v].[CreatedBy], [v].[IsActive], [v].[IsDeleted], [v].[UpdatedAt], [v].[UpdatedBy], [v].[VendorCode], [v].[VendorName]
+FROM [Vendors] AS [v]
+WHERE [v].[IsDeleted] = CAST(0 AS bit) AND [v].[IsDeleted] = CAST(0 AS bit)
+ORDER BY [v].[VendorCode]
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+2026-08-29 00:07:57.080 +07:00 [INF] HTTP GET /api/v1/vendors responded 200 in 248.6898ms
+2026-08-29 00:07:57.139 +07:00 [INF] HTTP GET /api/v1/locations started
+2026-08-29 00:07:57.232 +07:00 [INF] Executed DbCommand (9ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Locations] AS [l]
+WHERE [l].[IsDeleted] = CAST(0 AS bit) AND [l].[IsDeleted] = CAST(0 AS bit)
+2026-08-29 00:07:57.504 +07:00 [INF] Executed DbCommand (16ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[Id], [t].[Aisle], [t].[CreatedAt], [t].[CreatedBy], [t].[IsActive], [t].[IsDeleted], [t].[Level], [t].[LocationCode], [t].[Rack], [t].[UpdatedAt], [t].[UpdatedBy], [t].[WarehouseId], [t0].[Id], [t0].[Address], [t0].[CreatedAt], [t0].[CreatedBy], [t0].[IsActive], [t0].[IsDeleted], [t0].[UpdatedAt], [t0].[UpdatedBy], [t0].[WarehouseCode], [t0].[WarehouseName]
+FROM (
+    SELECT [l].[Id], [l].[Aisle], [l].[CreatedAt], [l].[CreatedBy], [l].[IsActive], [l].[IsDeleted], [l].[Level], [l].[LocationCode], [l].[Rack], [l].[UpdatedAt], [l].[UpdatedBy], [l].[WarehouseId]
+    FROM [Locations] AS [l]
+    WHERE [l].[IsDeleted] = CAST(0 AS bit) AND [l].[IsDeleted] = CAST(0 AS bit)
+    ORDER BY [l].[LocationCode]
+    OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+) AS [t]
+INNER JOIN (
+    SELECT [w].[Id], [w].[Address], [w].[CreatedAt], [w].[CreatedBy], [w].[IsActive], [w].[IsDeleted], [w].[UpdatedAt], [w].[UpdatedBy], [w].[WarehouseCode], [w].[WarehouseName]
+    FROM [Warehouses] AS [w]
+    WHERE [w].[IsDeleted] = CAST(0 AS bit)
+) AS [t0] ON [t].[WarehouseId] = [t0].[Id]
+ORDER BY [t].[LocationCode]
+2026-08-29 00:07:57.779 +07:00 [ERR] Unhandled exception: Error mapping types.
+
+Mapping types:
+List`1 -> IEnumerable`1
+System.Collections.Generic.List`1[[WMS.Domain.Entities.MasterData.Location, WMS.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] -> System.Collections.Generic.IEnumerable`1[[WMS.Application.DTOs.MasterData.LocationDto, WMS.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+AutoMapper.AutoMapperMappingException: Error mapping types.
+
+Mapping types:
+List`1 -> IEnumerable`1
+System.Collections.Generic.List`1[[WMS.Domain.Entities.MasterData.Location, WMS.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] -> System.Collections.Generic.IEnumerable`1[[WMS.Application.DTOs.MasterData.LocationDto, WMS.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+ ---> System.ArgumentException: WMS.Application.DTOs.MasterData.LocationDto needs to have a constructor with 0 args or only optional args. Validate your configuration for details. (Parameter 'type')
+   at lambda_method491(Closure, Object, IEnumerable`1, ResolutionContext)
+   --- End of inner exception stack trace ---
+   at lambda_method491(Closure, Object, IEnumerable`1, ResolutionContext)
+   at WMS.Application.Services.MasterData.LocationService.GetAllAsync(PaginationParams pagination, Nullable`1 warehouseId, CancellationToken ct) in C:\Users\admin\Documents\GitHub\Warehouse Management System\src\WMS.Application\Services\MasterData\LocationService.cs:line 40
+   at WMS.API.Controllers.LocationsController.GetAll(PaginationParams pagination, Nullable`1 warehouseId, CancellationToken ct) in C:\Users\admin\Documents\GitHub\Warehouse Management System\src\WMS.API\Controllers\LocationsController.cs:line 18
+   at lambda_method373(Closure, Object)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at WMS.API.Middleware.RequestLoggingMiddleware.InvokeAsync(HttpContext context) in C:\Users\admin\Documents\GitHub\Warehouse Management System\src\WMS.API\Middleware\RequestLoggingMiddleware.cs:line 18
+   at WMS.API.Middleware.ExceptionHandlerMiddleware.InvokeAsync(HttpContext context) in C:\Users\admin\Documents\GitHub\Warehouse Management System\src\WMS.API\Middleware\ExceptionHandlerMiddleware.cs:line 21
+2026-08-29 00:07:58.128 +07:00 [INF] HTTP GET /api/v1/purchase-orders started
+2026-08-29 00:07:58.136 +07:00 [INF] HTTP GET /api/v1/purchase-orders responded 404 in 7.8653ms
+2026-08-29 00:07:58.164 +07:00 [INF] HTTP GET /api/v1/sales-orders started
+2026-08-29 00:07:58.178 +07:00 [INF] HTTP GET /api/v1/sales-orders responded 404 in 14.0818ms
+2026-08-29 00:07:58.202 +07:00 [INF] HTTP GET /api/v1/purchase-orders started
+2026-08-29 00:07:58.210 +07:00 [INF] HTTP GET /api/v1/purchase-orders responded 404 in 7.7854ms
+2026-08-29 00:07:58.230 +07:00 [INF] HTTP GET /api/v1/sales-orders started
+2026-08-29 00:07:58.241 +07:00 [INF] HTTP GET /api/v1/sales-orders responded 404 in 10.871ms
+2026-08-29 00:07:58.262 +07:00 [INF] HTTP GET /api/v1/stock/balances started
+2026-08-29 00:07:58.348 +07:00 [INF] Executed DbCommand (12ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [StockBalances] AS [s]
+WHERE [s].[IsDeleted] = CAST(0 AS bit) AND [s].[IsDeleted] = CAST(0 AS bit) AND [s].[AvailableQty] > 0.0
+2026-08-29 00:07:58.498 +07:00 [INF] Executed DbCommand (44ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t0].[Id], [t0].[AvailableQty], [t0].[CreatedAt], [t0].[CreatedBy], [t0].[IsDeleted], [t0].[ItemId], [t0].[LocationId], [t0].[ReservedQty], [t0].[UpdatedAt], [t0].[UpdatedBy], [t0].[Id0], [t0].[Category], [t0].[CreatedAt0], [t0].[CreatedBy0], [t0].[Description], [t0].[IsActive], [t0].[IsDeleted0], [t0].[ItemCode], [t0].[ItemName], [t0].[MaxStock], [t0].[MinStock], [t0].[UOM], [t0].[UpdatedAt0], [t0].[UpdatedBy0], [t1].[Id], [t1].[Aisle], [t1].[CreatedAt], [t1].[CreatedBy], [t1].[IsActive], [t1].[IsDeleted], [t1].[Level], [t1].[LocationCode], [t1].[Rack], [t1].[UpdatedAt], [t1].[UpdatedBy], [t1].[WarehouseId], [t2].[Id], [t2].[Address], [t2].[CreatedAt], [t2].[CreatedBy], [t2].[IsActive], [t2].[IsDeleted], [t2].[UpdatedAt], [t2].[UpdatedBy], [t2].[WarehouseCode], [t2].[WarehouseName]
+FROM (
+    SELECT [s].[Id], [s].[AvailableQty], [s].[CreatedAt], [s].[CreatedBy], [s].[IsDeleted], [s].[ItemId], [s].[LocationId], [s].[ReservedQty], [s].[UpdatedAt], [s].[UpdatedBy], [t].[Id] AS [Id0], [t].[Category], [t].[CreatedAt] AS [CreatedAt0], [t].[CreatedBy] AS [CreatedBy0], [t].[Description], [t].[IsActive], [t].[IsDeleted] AS [IsDeleted0], [t].[ItemCode], [t].[ItemName], [t].[MaxStock], [t].[MinStock], [t].[UOM], [t].[UpdatedAt] AS [UpdatedAt0], [t].[UpdatedBy] AS [UpdatedBy0]
+    FROM [StockBalances] AS [s]
+    INNER JOIN (
+        SELECT [i].[Id], [i].[Category], [i].[CreatedAt], [i].[CreatedBy], [i].[Description], [i].[IsActive], [i].[IsDeleted], [i].[ItemCode], [i].[ItemName], [i].[MaxStock], [i].[MinStock], [i].[UOM], [i].[UpdatedAt], [i].[UpdatedBy]
+        FROM [Items] AS [i]
+        WHERE [i].[IsDeleted] = CAST(0 AS bit)
+    ) AS [t] ON [s].[ItemId] = [t].[Id]
+    WHERE [s].[IsDeleted] = CAST(0 AS bit) AND [s].[IsDeleted] = CAST(0 AS bit) AND [s].[AvailableQty] > 0.0
+    ORDER BY [t].[ItemCode]
+    OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+) AS [t0]
+INNER JOIN (
+    SELECT [l].[Id], [l].[Aisle], [l].[CreatedAt], [l].[CreatedBy], [l].[IsActive], [l].[IsDeleted], [l].[Level], [l].[LocationCode], [l].[Rack], [l].[UpdatedAt], [l].[UpdatedBy], [l].[WarehouseId]
+    FROM [Locations] AS [l]
+    WHERE [l].[IsDeleted] = CAST(0 AS bit)
+) AS [t1] ON [t0].[LocationId] = [t1].[Id]
+INNER JOIN (
+    SELECT [w].[Id], [w].[Address], [w].[CreatedAt], [w].[CreatedBy], [w].[IsActive], [w].[IsDeleted], [w].[UpdatedAt], [w].[UpdatedBy], [w].[WarehouseCode], [w].[WarehouseName]
+    FROM [Warehouses] AS [w]
+    WHERE [w].[IsDeleted] = CAST(0 AS bit)
+) AS [t2] ON [t1].[WarehouseId] = [t2].[Id]
+ORDER BY [t0].[ItemCode]
+2026-08-29 00:07:58.598 +07:00 [INF] HTTP GET /api/v1/stock/balances responded 200 in 335.0587ms
+2026-08-29 00:11:42.938 +07:00 [INF] HTTP GET /api/v1/items started
+2026-08-29 00:11:42.982 +07:00 [INF] Executed DbCommand (11ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Items] AS [i]
+WHERE [i].[IsDeleted] = CAST(0 AS bit) AND [i].[IsDeleted] = CAST(0 AS bit)
+2026-08-29 00:11:43.004 +07:00 [INF] Executed DbCommand (7ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [i].[Id], [i].[Category], [i].[CreatedAt], [i].[CreatedBy], [i].[Description], [i].[IsActive], [i].[IsDeleted], [i].[ItemCode], [i].[ItemName], [i].[MaxStock], [i].[MinStock], [i].[UOM], [i].[UpdatedAt], [i].[UpdatedBy]
+FROM [Items] AS [i]
+WHERE [i].[IsDeleted] = CAST(0 AS bit) AND [i].[IsDeleted] = CAST(0 AS bit)
+ORDER BY [i].[ItemCode]
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+2026-08-29 00:11:43.042 +07:00 [INF] HTTP GET /api/v1/items responded 200 in 104.8676ms
+2026-08-29 00:11:44.633 +07:00 [INF] HTTP GET /api/v1/warehouses started
+2026-08-29 00:11:44.675 +07:00 [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Warehouses] AS [w]
+WHERE [w].[IsDeleted] = CAST(0 AS bit) AND [w].[IsDeleted] = CAST(0 AS bit)
+2026-08-29 00:11:44.703 +07:00 [INF] Executed DbCommand (12ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [w].[Id], [w].[Address], [w].[CreatedAt], [w].[CreatedBy], [w].[IsActive], [w].[IsDeleted], [w].[UpdatedAt], [w].[UpdatedBy], [w].[WarehouseCode], [w].[WarehouseName]
+FROM [Warehouses] AS [w]
+WHERE [w].[IsDeleted] = CAST(0 AS bit) AND [w].[IsDeleted] = CAST(0 AS bit)
+ORDER BY [w].[WarehouseCode]
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+2026-08-29 00:11:44.738 +07:00 [INF] HTTP GET /api/v1/warehouses responded 200 in 104.858ms
+2026-08-29 00:11:46.497 +07:00 [INF] HTTP GET /api/v1/vendors started
+2026-08-29 00:11:46.528 +07:00 [INF] Executed DbCommand (7ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Vendors] AS [v]
+WHERE [v].[IsDeleted] = CAST(0 AS bit) AND [v].[IsDeleted] = CAST(0 AS bit)
+2026-08-29 00:11:46.556 +07:00 [INF] Executed DbCommand (8ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [v].[Id], [v].[Address], [v].[Contact], [v].[CreatedAt], [v].[CreatedBy], [v].[IsActive], [v].[IsDeleted], [v].[UpdatedAt], [v].[UpdatedBy], [v].[VendorCode], [v].[VendorName]
+FROM [Vendors] AS [v]
+WHERE [v].[IsDeleted] = CAST(0 AS bit) AND [v].[IsDeleted] = CAST(0 AS bit)
+ORDER BY [v].[VendorCode]
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+2026-08-29 00:11:46.596 +07:00 [INF] HTTP GET /api/v1/vendors responded 200 in 99.9234ms
+2026-08-29 00:11:48.946 +07:00 [INF] HTTP GET /api/v1/purchase-orders started
+2026-08-29 00:11:48.971 +07:00 [INF] HTTP GET /api/v1/purchase-orders responded 404 in 26.3875ms
+2026-08-29 00:11:52.200 +07:00 [INF] HTTP GET /api/v1/grn started
+2026-08-29 00:11:52.272 +07:00 [INF] Executed DbCommand (10ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [GoodsReceiptNotes] AS [g]
+WHERE [g].[IsDeleted] = CAST(0 AS bit) AND [g].[IsDeleted] = CAST(0 AS bit)
+2026-08-29 00:11:52.550 +07:00 [INF] Executed DbCommand (77ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[Id], [t].[CreatedAt], [t].[CreatedBy], [t].[GRNDate], [t].[GRNNumber], [t].[IsDeleted], [t].[Notes], [t].[POId], [t].[ReceivedBy], [t].[Status], [t].[UpdatedAt], [t].[UpdatedBy], [t0].[Id], [t0].[CreatedAt], [t0].[CreatedBy], [t0].[IsDeleted], [t0].[Notes], [t0].[PODate], [t0].[PONumber], [t0].[Status], [t0].[UpdatedAt], [t0].[UpdatedBy], [t0].[VendorId], [t1].[Id], [t1].[CreatedAt], [t1].[CreatedBy], [t1].[GRNId], [t1].[IsDeleted], [t1].[ItemId], [t1].[PutAwayLocationId], [t1].[QCStatus], [t1].[ReceivedQty], [t1].[UpdatedAt], [t1].[UpdatedBy], [t1].[Id0], [t1].[Category], [t1].[CreatedAt0], [t1].[CreatedBy0], [t1].[Description], [t1].[IsActive], [t1].[IsDeleted0], [t1].[ItemCode], [t1].[ItemName], [t1].[MaxStock], [t1].[MinStock], [t1].[UOM], [t1].[UpdatedAt0], [t1].[UpdatedBy0], [t1].[Id1], [t1].[Aisle], [t1].[CreatedAt1], [t1].[CreatedBy1], [t1].[IsActive0], [t1].[IsDeleted1], [t1].[Level], [t1].[LocationCode], [t1].[Rack], [t1].[UpdatedAt1], [t1].[UpdatedBy1], [t1].[WarehouseId]
+FROM (
+    SELECT [g].[Id], [g].[CreatedAt], [g].[CreatedBy], [g].[GRNDate], [g].[GRNNumber], [g].[IsDeleted], [g].[Notes], [g].[POId], [g].[ReceivedBy], [g].[Status], [g].[UpdatedAt], [g].[UpdatedBy]
+    FROM [GoodsReceiptNotes] AS [g]
+    WHERE [g].[IsDeleted] = CAST(0 AS bit) AND [g].[IsDeleted] = CAST(0 AS bit)
+    ORDER BY [g].[GRNDate] DESC
+    OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+) AS [t]
+INNER JOIN (
+    SELECT [p].[Id], [p].[CreatedAt], [p].[CreatedBy], [p].[IsDeleted], [p].[Notes], [p].[PODate], [p].[PONumber], [p].[Status], [p].[UpdatedAt], [p].[UpdatedBy], [p].[VendorId]
+    FROM [PurchaseOrders] AS [p]
+    WHERE [p].[IsDeleted] = CAST(0 AS bit)
+) AS [t0] ON [t].[POId] = [t0].[Id]
+LEFT JOIN (
+    SELECT [g0].[Id], [g0].[CreatedAt], [g0].[CreatedBy], [g0].[GRNId], [g0].[IsDeleted], [g0].[ItemId], [g0].[PutAwayLocationId], [g0].[QCStatus], [g0].[ReceivedQty], [g0].[UpdatedAt], [g0].[UpdatedBy], [t2].[Id] AS [Id0], [t2].[Category], [t2].[CreatedAt] AS [CreatedAt0], [t2].[CreatedBy] AS [CreatedBy0], [t2].[Description], [t2].[IsActive], [t2].[IsDeleted] AS [IsDeleted0], [t2].[ItemCode], [t2].[ItemName], [t2].[MaxStock], [t2].[MinStock], [t2].[UOM], [t2].[UpdatedAt] AS [UpdatedAt0], [t2].[UpdatedBy] AS [UpdatedBy0], [t3].[Id] AS [Id1], [t3].[Aisle], [t3].[CreatedAt] AS [CreatedAt1], [t3].[CreatedBy] AS [CreatedBy1], [t3].[IsActive] AS [IsActive0], [t3].[IsDeleted] AS [IsDeleted1], [t3].[Level], [t3].[LocationCode], [t3].[Rack], [t3].[UpdatedAt] AS [UpdatedAt1], [t3].[UpdatedBy] AS [UpdatedBy1], [t3].[WarehouseId]
+    FROM [GoodsReceiptNoteDetails] AS [g0]
+    INNER JOIN (
+        SELECT [i].[Id], [i].[Category], [i].[CreatedAt], [i].[CreatedBy], [i].[Description], [i].[IsActive], [i].[IsDeleted], [i].[ItemCode], [i].[ItemName], [i].[MaxStock], [i].[MinStock], [i].[UOM], [i].[UpdatedAt], [i].[UpdatedBy]
+        FROM [Items] AS [i]
+        WHERE [i].[IsDeleted] = CAST(0 AS bit)
+    ) AS [t2] ON [g0].[ItemId] = [t2].[Id]
+    LEFT JOIN (
+        SELECT [l].[Id], [l].[Aisle], [l].[CreatedAt], [l].[CreatedBy], [l].[IsActive], [l].[IsDeleted], [l].[Level], [l].[LocationCode], [l].[Rack], [l].[UpdatedAt], [l].[UpdatedBy], [l].[WarehouseId]
+        FROM [Locations] AS [l]
+        WHERE [l].[IsDeleted] = CAST(0 AS bit)
+    ) AS [t3] ON [g0].[PutAwayLocationId] = [t3].[Id]
+    WHERE [g0].[IsDeleted] = CAST(0 AS bit)
+) AS [t1] ON [t].[Id] = [t1].[GRNId]
+ORDER BY [t].[GRNDate] DESC, [t].[Id], [t0].[Id], [t1].[Id], [t1].[Id0]
+2026-08-29 00:11:52.705 +07:00 [INF] HTTP GET /api/v1/grn responded 200 in 504.6189ms
+2026-08-29 00:11:54.940 +07:00 [INF] HTTP GET /api/v1/stock/balances started
+2026-08-29 00:11:54.990 +07:00 [INF] Executed DbCommand (16ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [StockBalances] AS [s]
+WHERE [s].[IsDeleted] = CAST(0 AS bit) AND [s].[IsDeleted] = CAST(0 AS bit) AND [s].[AvailableQty] > 0.0
+2026-08-29 00:11:55.056 +07:00 [INF] Executed DbCommand (38ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t0].[Id], [t0].[AvailableQty], [t0].[CreatedAt], [t0].[CreatedBy], [t0].[IsDeleted], [t0].[ItemId], [t0].[LocationId], [t0].[ReservedQty], [t0].[UpdatedAt], [t0].[UpdatedBy], [t0].[Id0], [t0].[Category], [t0].[CreatedAt0], [t0].[CreatedBy0], [t0].[Description], [t0].[IsActive], [t0].[IsDeleted0], [t0].[ItemCode], [t0].[ItemName], [t0].[MaxStock], [t0].[MinStock], [t0].[UOM], [t0].[UpdatedAt0], [t0].[UpdatedBy0], [t1].[Id], [t1].[Aisle], [t1].[CreatedAt], [t1].[CreatedBy], [t1].[IsActive], [t1].[IsDeleted], [t1].[Level], [t1].[LocationCode], [t1].[Rack], [t1].[UpdatedAt], [t1].[UpdatedBy], [t1].[WarehouseId], [t2].[Id], [t2].[Address], [t2].[CreatedAt], [t2].[CreatedBy], [t2].[IsActive], [t2].[IsDeleted], [t2].[UpdatedAt], [t2].[UpdatedBy], [t2].[WarehouseCode], [t2].[WarehouseName]
+FROM (
+    SELECT [s].[Id], [s].[AvailableQty], [s].[CreatedAt], [s].[CreatedBy], [s].[IsDeleted], [s].[ItemId], [s].[LocationId], [s].[ReservedQty], [s].[UpdatedAt], [s].[UpdatedBy], [t].[Id] AS [Id0], [t].[Category], [t].[CreatedAt] AS [CreatedAt0], [t].[CreatedBy] AS [CreatedBy0], [t].[Description], [t].[IsActive], [t].[IsDeleted] AS [IsDeleted0], [t].[ItemCode], [t].[ItemName], [t].[MaxStock], [t].[MinStock], [t].[UOM], [t].[UpdatedAt] AS [UpdatedAt0], [t].[UpdatedBy] AS [UpdatedBy0]
+    FROM [StockBalances] AS [s]
+    INNER JOIN (
+        SELECT [i].[Id], [i].[Category], [i].[CreatedAt], [i].[CreatedBy], [i].[Description], [i].[IsActive], [i].[IsDeleted], [i].[ItemCode], [i].[ItemName], [i].[MaxStock], [i].[MinStock], [i].[UOM], [i].[UpdatedAt], [i].[UpdatedBy]
+        FROM [Items] AS [i]
+        WHERE [i].[IsDeleted] = CAST(0 AS bit)
+    ) AS [t] ON [s].[ItemId] = [t].[Id]
+    WHERE [s].[IsDeleted] = CAST(0 AS bit) AND [s].[IsDeleted] = CAST(0 AS bit) AND [s].[AvailableQty] > 0.0
+    ORDER BY [t].[ItemCode]
+    OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+) AS [t0]
+INNER JOIN (
+    SELECT [l].[Id], [l].[Aisle], [l].[CreatedAt], [l].[CreatedBy], [l].[IsActive], [l].[IsDeleted], [l].[Level], [l].[LocationCode], [l].[Rack], [l].[UpdatedAt], [l].[UpdatedBy], [l].[WarehouseId]
+    FROM [Locations] AS [l]
+    WHERE [l].[IsDeleted] = CAST(0 AS bit)
+) AS [t1] ON [t0].[LocationId] = [t1].[Id]
+INNER JOIN (
+    SELECT [w].[Id], [w].[Address], [w].[CreatedAt], [w].[CreatedBy], [w].[IsActive], [w].[IsDeleted], [w].[UpdatedAt], [w].[UpdatedBy], [w].[WarehouseCode], [w].[WarehouseName]
+    FROM [Warehouses] AS [w]
+    WHERE [w].[IsDeleted] = CAST(0 AS bit)
+) AS [t2] ON [t1].[WarehouseId] = [t2].[Id]
+ORDER BY [t0].[ItemCode]
+2026-08-29 00:11:55.104 +07:00 [INF] HTTP GET /api/v1/stock/balances responded 200 in 164.2813ms
+2026-08-29 00:11:56.484 +07:00 [INF] HTTP GET /api/v1/stock/ledger started
+2026-08-29 00:11:56.569 +07:00 [INF] Executed DbCommand (11ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [StockLedgers] AS [s]
+WHERE [s].[IsDeleted] = CAST(0 AS bit) AND [s].[IsDeleted] = CAST(0 AS bit)
+2026-08-29 00:11:56.651 +07:00 [INF] Executed DbCommand (20ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[Id], [t].[CreatedAt], [t].[CreatedBy], [t].[IsDeleted], [t].[ItemId], [t].[LocationId], [t].[MovementType], [t].[Quantity], [t].[ReferenceNumber], [t].[Remarks], [t].[UpdatedAt], [t].[UpdatedBy], [t0].[Id], [t0].[Category], [t0].[CreatedAt], [t0].[CreatedBy], [t0].[Description], [t0].[IsActive], [t0].[IsDeleted], [t0].[ItemCode], [t0].[ItemName], [t0].[MaxStock], [t0].[MinStock], [t0].[UOM], [t0].[UpdatedAt], [t0].[UpdatedBy], [t1].[Id], [t1].[Aisle], [t1].[CreatedAt], [t1].[CreatedBy], [t1].[IsActive], [t1].[IsDeleted], [t1].[Level], [t1].[LocationCode], [t1].[Rack], [t1].[UpdatedAt], [t1].[UpdatedBy], [t1].[WarehouseId]
+FROM (
+    SELECT [s].[Id], [s].[CreatedAt], [s].[CreatedBy], [s].[IsDeleted], [s].[ItemId], [s].[LocationId], [s].[MovementType], [s].[Quantity], [s].[ReferenceNumber], [s].[Remarks], [s].[UpdatedAt], [s].[UpdatedBy]
+    FROM [StockLedgers] AS [s]
+    WHERE [s].[IsDeleted] = CAST(0 AS bit) AND [s].[IsDeleted] = CAST(0 AS bit)
+    ORDER BY [s].[CreatedAt] DESC
+    OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+) AS [t]
+INNER JOIN (
+    SELECT [i].[Id], [i].[Category], [i].[CreatedAt], [i].[CreatedBy], [i].[Description], [i].[IsActive], [i].[IsDeleted], [i].[ItemCode], [i].[ItemName], [i].[MaxStock], [i].[MinStock], [i].[UOM], [i].[UpdatedAt], [i].[UpdatedBy]
+    FROM [Items] AS [i]
+    WHERE [i].[IsDeleted] = CAST(0 AS bit)
+) AS [t0] ON [t].[ItemId] = [t0].[Id]
+INNER JOIN (
+    SELECT [l].[Id], [l].[Aisle], [l].[CreatedAt], [l].[CreatedBy], [l].[IsActive], [l].[IsDeleted], [l].[Level], [l].[LocationCode], [l].[Rack], [l].[UpdatedAt], [l].[UpdatedBy], [l].[WarehouseId]
+    FROM [Locations] AS [l]
+    WHERE [l].[IsDeleted] = CAST(0 AS bit)
+) AS [t1] ON [t].[LocationId] = [t1].[Id]
+ORDER BY [t].[CreatedAt] DESC
+2026-08-29 00:11:56.759 +07:00 [INF] HTTP GET /api/v1/stock/ledger responded 200 in 275.0608ms
+2026-08-29 00:14:56.567 +07:00 [INF] HTTP GET /api/v1/stock-adjustments started
+2026-08-29 00:14:56.672 +07:00 [INF] Executed DbCommand (15ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [StockAdjustments] AS [s]
+WHERE [s].[IsDeleted] = CAST(0 AS bit) AND [s].[IsDeleted] = CAST(0 AS bit)
+2026-08-29 00:14:56.780 +07:00 [INF] Executed DbCommand (36ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[Id], [t].[AdjDate], [t].[AdjNumber], [t].[AdjQty], [t].[ApprovedBy], [t].[CreatedAt], [t].[CreatedBy], [t].[IsApproved], [t].[IsDeleted], [t].[ItemId], [t].[LocationId], [t].[Reason], [t].[UpdatedAt], [t].[UpdatedBy], [t0].[Id], [t0].[Category], [t0].[CreatedAt], [t0].[CreatedBy], [t0].[Description], [t0].[IsActive], [t0].[IsDeleted], [t0].[ItemCode], [t0].[ItemName], [t0].[MaxStock], [t0].[MinStock], [t0].[UOM], [t0].[UpdatedAt], [t0].[UpdatedBy], [t1].[Id], [t1].[Aisle], [t1].[CreatedAt], [t1].[CreatedBy], [t1].[IsActive], [t1].[IsDeleted], [t1].[Level], [t1].[LocationCode], [t1].[Rack], [t1].[UpdatedAt], [t1].[UpdatedBy], [t1].[WarehouseId]
+FROM (
+    SELECT [s].[Id], [s].[AdjDate], [s].[AdjNumber], [s].[AdjQty], [s].[ApprovedBy], [s].[CreatedAt], [s].[CreatedBy], [s].[IsApproved], [s].[IsDeleted], [s].[ItemId], [s].[LocationId], [s].[Reason], [s].[UpdatedAt], [s].[UpdatedBy]
+    FROM [StockAdjustments] AS [s]
+    WHERE [s].[IsDeleted] = CAST(0 AS bit) AND [s].[IsDeleted] = CAST(0 AS bit)
+    ORDER BY [s].[AdjDate] DESC
+    OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+) AS [t]
+INNER JOIN (
+    SELECT [i].[Id], [i].[Category], [i].[CreatedAt], [i].[CreatedBy], [i].[Description], [i].[IsActive], [i].[IsDeleted], [i].[ItemCode], [i].[ItemName], [i].[MaxStock], [i].[MinStock], [i].[UOM], [i].[UpdatedAt], [i].[UpdatedBy]
+    FROM [Items] AS [i]
+    WHERE [i].[IsDeleted] = CAST(0 AS bit)
+) AS [t0] ON [t].[ItemId] = [t0].[Id]
+INNER JOIN (
+    SELECT [l].[Id], [l].[Aisle], [l].[CreatedAt], [l].[CreatedBy], [l].[IsActive], [l].[IsDeleted], [l].[Level], [l].[LocationCode], [l].[Rack], [l].[UpdatedAt], [l].[UpdatedBy], [l].[WarehouseId]
+    FROM [Locations] AS [l]
+    WHERE [l].[IsDeleted] = CAST(0 AS bit)
+) AS [t1] ON [t].[LocationId] = [t1].[Id]
+ORDER BY [t].[AdjDate] DESC
+2026-08-29 00:14:56.867 +07:00 [INF] HTTP GET /api/v1/stock-adjustments responded 200 in 300.4408ms
